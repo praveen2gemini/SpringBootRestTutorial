@@ -1,0 +1,4 @@
+2021-May-15 17:53:59 PM [main] INFO  com.dpdlad.simplejson.SimpleJsonApplicationTests - Starting SimpleJsonApplicationTests using Java 11.0.10 on Techolutions-MacBook-Pro.local with PID 8973 (started by techolution in /Users/techolution/IdeaProjects/simplejson)
+2021-May-15 17:53:59 PM [main] DEBUG com.dpdlad.simplejson.SimpleJsonApplicationTests - Running with Spring Boot v2.5.0-SNAPSHOT, Spring v5.3.7
+2021-May-15 17:53:59 PM [main] INFO  com.dpdlad.simplejson.SimpleJsonApplicationTests - No active profile set, falling back to default profiles: default
+2021-May-15 17:54:00 PM [main] INFO  com.dpdlad.simplejson.SimpleJsonApplicationTests - Started SimpleJsonApplicationTests in 1.846 seconds (JVM running for 8.087)

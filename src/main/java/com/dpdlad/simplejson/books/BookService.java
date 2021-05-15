@@ -1,14 +1,20 @@
 package com.dpdlad.simplejson.books;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
+@PropertySource("classpath:application.properties")
 @Component
 public class BookService {
+
+    @Autowired
+    Environment environment;
 
     public List<Book> getAllBooks() {
         return Arrays.asList(new Book(101L, "Ramayanam", "Kambar"),
@@ -29,15 +35,25 @@ public class BookService {
         return filteredBooks;
     }
 
-    public Book getBooksById(long bookId) {
+    private Book getOptionalBook(long bookId) {
         List<Book> allBooks = getAllBooks();
-        AtomicReference<Book> filteredBook = new AtomicReference<>();
+        Book foundBook = null;
         for (Book book : allBooks) {
             if (book.bookId == bookId) {
-                filteredBook.set(book);
+                foundBook = book;
                 break;
             }
         }
-        return filteredBook.get();
+        return foundBook;
+    }
+
+    public Book getBooksById(long bookId) {
+        Book foundBook = getOptionalBook(bookId);
+        if (null == foundBook) {
+            long defaultBookId = environment.getProperty("default.bookId", Long.class);
+            System.out.println("default.bookId" + defaultBookId);
+            foundBook = getOptionalBook(defaultBookId);
+        }
+        return foundBook;
     }
 }

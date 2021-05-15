@@ -1,20 +1,19 @@
 package com.dpdlad.simplejson.books;
 
+import com.dpdlad.simplejson.YAMLConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@PropertySource("classpath:application.properties")
+//@PropertySource("classpath:application.properties")
 @Component
 public class BookService {
 
     @Autowired
-    Environment environment;
+    YAMLConfig yamlConfig;
 
     public List<Book> getAllBooks() {
         return Arrays.asList(new Book(101L, "Ramayanam", "Kambar"),
@@ -50,9 +49,10 @@ public class BookService {
     public Book getBooksById(long bookId) {
         Book foundBook = getOptionalBook(bookId);
         if (null == foundBook) {
-            long defaultBookId = environment.getProperty("default.bookId", Long.class);
-            System.out.println("default.bookId" + defaultBookId);
-            foundBook = getOptionalBook(defaultBookId);
+//            long defaultBookId = 103;
+//            long defaultBookId = environment.getProperty("default.bookId", Long.class);
+            System.out.println("default.bookId" + yamlConfig.getBookId());
+            foundBook = getOptionalBook(yamlConfig.getBookId());
         }
         return foundBook;
     }

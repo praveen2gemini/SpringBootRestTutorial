@@ -1,0 +1,24 @@
+#application:
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    com.howtodoinjava: DEBUG
+    org.hibernate: ERROR
+security:
+  basic:
+    enabled: false
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+server:
+  port: 9090
+book:
+  bookId: 101
+laptop:
+  processorName: Apple Silicon
+  version: 22
+  operatingSystem: MAC Big Sur

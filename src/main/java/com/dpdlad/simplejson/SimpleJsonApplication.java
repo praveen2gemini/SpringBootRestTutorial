@@ -7,7 +7,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-public class SimpleJsonApplication extends SpringBootServletInitializer {
+public class SimpleJsonApplication
+        extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(SimpleJsonApplication.class, args);

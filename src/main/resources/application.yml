@@ -20,3 +20,15 @@ laptop:
   processorName: Apple Silicon
   version: 22
   operatingSystem: MAC Big Sur
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/PRODUCTS_DB?useSSL=false
+    username: root
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+        ddl-auto: update

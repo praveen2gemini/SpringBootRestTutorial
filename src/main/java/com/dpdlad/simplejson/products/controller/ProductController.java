@@ -57,7 +57,7 @@ public class ProductController {
     }
 
     @GetMapping("/productById/{id}")
-    public ResponseEntity<GeneralResponse<Product>> findProductById(@PathVariable int id) {
+    public ResponseEntity<GeneralResponse<Product>> findProductById(@PathVariable int id) { // you have to pass the value on URL path not in key values
         try {
             GeneralResponse<Product> generalResponse = new GeneralResponse<>();
             generalResponse.setStatusCode(HttpStatus.OK.value());
@@ -69,8 +69,8 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/product/{name}")
-    public ResponseEntity<GeneralResponse<Product>> findProductByName(@PathVariable String name) {
+    @GetMapping("/product")
+    public ResponseEntity<GeneralResponse<Product>> findProductByName(@RequestParam String name) {
         try {
             GeneralResponse<Product> generalResponse = new GeneralResponse<>();
             generalResponse.setStatusCode(HttpStatus.OK.value());
@@ -82,7 +82,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping("/product")
     public ResponseEntity<GeneralResponse<Product>> updateProduct(@RequestBody Product product) {
         try {
             GeneralResponse<Product> generalResponse = new GeneralResponse<>();
@@ -95,8 +95,8 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<GeneralResponse<Product>> deleteProduct(@PathVariable int id) {
+    @DeleteMapping("/product")
+    public ResponseEntity<GeneralResponse<Product>> deleteProduct(@RequestParam int id) {
         try {
             GeneralResponse<Product> generalResponse = new GeneralResponse<>();
             generalResponse.setStatusCode(HttpStatus.OK.value());

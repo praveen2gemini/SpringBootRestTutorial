@@ -1,6 +1,7 @@
 package com.dpdlad.simplejson.products.controller;
 
 import com.dpdlad.simplejson.products.entity.Product;
+import com.dpdlad.simplejson.products.exception.ProductNotFoundException;
 import com.dpdlad.simplejson.products.response.GeneralResponse;
 import com.dpdlad.simplejson.products.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,41 +59,38 @@ public class ProductController {
 
     @GetMapping("/productById/{id}")
     public ResponseEntity<GeneralResponse<Product>> findProductById(@PathVariable int id) { // you have to pass the value on URL path not in key values
-        try {
-            GeneralResponse<Product> generalResponse = new GeneralResponse<>();
-            generalResponse.setStatusCode(HttpStatus.OK.value());
-            generalResponse.setStatusMessage(HTTP_STATUS_MESSAGE);
-            generalResponse.setData(productService.getProductById(id));
-            return new ResponseEntity<>(generalResponse, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Product product;
+        if ((product = productService.getProductById(id)) == null)
+            throw new ProductNotFoundException("Product not found for given Product ID");
+        GeneralResponse<Product> generalResponse = new GeneralResponse<>();
+        generalResponse.setStatusCode(HttpStatus.OK.value());
+        generalResponse.setStatusMessage(HTTP_STATUS_MESSAGE);
+        generalResponse.setData(product);
+        return new ResponseEntity<>(generalResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/product")
+    @GetMapping("/findProductByName")
     public ResponseEntity<GeneralResponse<Product>> findProductByName(@RequestParam String name) {
-        try {
-            GeneralResponse<Product> generalResponse = new GeneralResponse<>();
-            generalResponse.setStatusCode(HttpStatus.OK.value());
-            generalResponse.setStatusMessage(HTTP_STATUS_MESSAGE);
-            generalResponse.setData(productService.getProductByName(name));
-            return new ResponseEntity<>(generalResponse, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Product product;
+        if ((product = productService.getProductByName(name)) == null)
+            throw new ProductNotFoundException("Product not found for given Product Name");
+        GeneralResponse<Product> generalResponse = new GeneralResponse<>();
+        generalResponse.setStatusCode(HttpStatus.OK.value());
+        generalResponse.setStatusMessage(HTTP_STATUS_MESSAGE);
+        generalResponse.setData(product);
+        return new ResponseEntity<>(generalResponse, HttpStatus.OK);
     }
 
     @PutMapping("/product")
-    public ResponseEntity<GeneralResponse<Product>> updateProduct(@RequestBody Product product) {
-        try {
-            GeneralResponse<Product> generalResponse = new GeneralResponse<>();
-            generalResponse.setStatusCode(HttpStatus.OK.value());
-            generalResponse.setStatusMessage(HTTP_STATUS_MESSAGE);
-            generalResponse.setData(productService.updateProduct(product));
-            return new ResponseEntity<>(generalResponse, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<GeneralResponse<Product>> updateProduct(@RequestBody Product requestedProduct) {
+        Product product;
+        if ((product = productService.updateProduct(requestedProduct)) == null)
+            throw new ProductNotFoundException("Product not updated because given Product not found!");
+        GeneralResponse<Product> generalResponse = new GeneralResponse<>();
+        generalResponse.setStatusCode(HttpStatus.OK.value());
+        generalResponse.setStatusMessage(HTTP_STATUS_MESSAGE);
+        generalResponse.setData(product);
+        return new ResponseEntity<>(generalResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/product")

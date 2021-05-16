@@ -1,6 +1,6 @@
 package com.dpdlad.simplejson.products.service;
 
-import com.dpdlad.simplejson.products.Product;
+import com.dpdlad.simplejson.products.entity.Product;
 import com.dpdlad.simplejson.products.repositary.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

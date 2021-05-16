@@ -1,4 +1,4 @@
-package com.dpdlad.simplejson.products;
+package com.dpdlad.simplejson.products.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

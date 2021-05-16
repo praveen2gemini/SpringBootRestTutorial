@@ -1,7 +1,7 @@
 package com.dpdlad.simplejson.products.repositary;
 
 
-import com.dpdlad.simplejson.products.Product;
+import com.dpdlad.simplejson.products.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {

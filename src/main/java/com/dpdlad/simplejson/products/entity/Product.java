@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Table(name = "ProductTable")
 public class Product {
     @Id
-    @GeneratedValue
     private int id;
 
     public int getId() {

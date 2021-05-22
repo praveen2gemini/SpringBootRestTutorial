@@ -11,11 +11,12 @@ public class SimpleJsonApplication
         extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(SimpleJsonApplication.class, args);
-        for (String name : applicationContext.getBeanDefinitionNames()
-        ) {
-            System.out.println("Bean name is " + name);
-        }
+//        ApplicationContext applicationContext =
+                SpringApplication.run(SimpleJsonApplication.class, args);
+//        for (String name : applicationContext.getBeanDefinitionNames()
+//        ) {
+//            System.out.println("Bean name is " + name);
+//        }
     }
 
     @Override
